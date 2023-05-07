@@ -1,5 +1,4 @@
-
-
+import { searchAuto } from '../store/autoReducer';
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -10,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { useDispatch } from 'react-redux';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,6 +54,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Header() {
+
+  const dispatch = useDispatch()
+
+  const search = (e) => {
+    dispatch(searchAuto(e.target.value))
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -82,6 +89,7 @@ function Header() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={search}
             />
           </Search>
         </Toolbar>

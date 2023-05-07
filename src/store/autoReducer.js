@@ -18,14 +18,17 @@ export const fetchAuto = createAsyncThunk(
 const initialState = {
     data: [],
     status: null,
-    error: null
+    error: null,
+    search: ''
 }
 
 export const autoReducer = createSlice({
     name: 'auto',
     initialState,
     reducers: {
-      
+      searchAuto: (state, action) => {
+        state.search = action.payload
+      }
     },
     extraReducers: {
         [fetchAuto.pending]: (state, action) => {
@@ -43,6 +46,6 @@ export const autoReducer = createSlice({
     }
   })
 
-// export const { increment, decrement, incrementByAmount } = autoReducer.actions
+export const { searchAuto } = autoReducer.actions
 
 export default autoReducer.reducer
